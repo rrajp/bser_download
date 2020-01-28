@@ -61,4 +61,5 @@ def bser(start,end):
         print(e.args[0])
         return None
 
-app.run()
+if __name__ == '__main__':
+	app.run()
