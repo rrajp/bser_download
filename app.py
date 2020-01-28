@@ -4,6 +4,9 @@ import requests
 import os
 
 app = Flask(__name__)
+@app.route('/bser/')
+def front():
+	return render_template("bser_template.html")
 
 @app.route('/bser/<start>/<end>')
 def bser(start,end):

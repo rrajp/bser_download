@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>BSER Result Downloader</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+
+<div class="container text-center" style="padding:50px">
+  <div class="text-center">
+    <h3>BSER Result Downloader</h3>
+  </div>
+  <form class="form-inline" style="padding:50px">
+    <div class="form-group float-left">
+      <label for="email2" class="mb-2 mr-sm-2">Start roll number :</label>
+      <input type="text" class="form-control mb-2 mr-sm-2" id="start" placeholder="Enter Start Roll number" name="email">
+    </div>
+    <br>
+    <div class="form-group float-right">
+      <label for="pwd2" class="mb-2 mr-sm-2">End roll number :</label>
+      <input type="text" class="form-control mb-2 mr-sm-2" id="end" placeholder="Enter End Roll number" name="pswd">
+    </div>
+  </form >
+  <button type="submit" class="btn btn-primary mb-2" onclick="myFunction()">Download</button>
+  <p id="displayResult"></p>
+</div>
+
+
+</body>
+
+<script>
+function myFunction() {
+  var start = document.getElementById("start").value;
+  var end = document.getElementById("end").value;
+
+  var site = "http://salty-hollows-89457.herokuapp.com"
+  var endpoint = site + "/bser/"+start+"/"+end
+  //var endpoint = 'https://www.who.int/healthinfo/statistics/whostat2005_mortality.xls?ua=1'
+
+  var element = document.createElement('a');
+  element.setAttribute('href', endpoint);
+  element.setAttribute('download', 'Result.xlsx');
+
+  element.style.display = 'none';
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
+
+
+
+}
+</script>
+
+
+</html>
