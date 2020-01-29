@@ -14,7 +14,7 @@ def front():
 @app.route('/bser/<id>/<start>/<end>')
 def bser(start, end):
     try:
-        urllist = ["http://rajresults.nic.in/resbserx19.asp", "http://rajresults.nic.in/rajartsbser2019.htm",
+        urllist = ["","http://rajresults.nic.in/resbserx19.asp", "http://rajresults.nic.in/rajartsbser2019.htm",
                    "http://rajresults.nic.in/sciencebser19.htm", "http://rajresults.nic.in/commercebser19.htm"]
         url = urllist[int(id)]
         data = dict()
