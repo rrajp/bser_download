@@ -41,8 +41,12 @@ def bser(uid,start, end):
             response = requests.request("POST", url, headers = headers, data = payload)
             print(response.status_code)
             resp = pd.read_html(response.text.encode('utf8'))
-            if "commerce" or "science" in url:
+            if "commerce"  in url:
                 resp[2].columns=resp[2].iloc[1,:].tolist()
+            elif "science" in url:
+                resp[2].columns = resp[2].iloc[1, :].tolist()
+            elif "art" in url:
+                resp[2].columns = resp[2].iloc[1, :].tolist()
             else:
                 resp[2].columns=resp[2].iloc[0,:].tolist()
             #resp[2].columns = resp[2].iloc[0, :].tolist()
