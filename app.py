@@ -8,10 +8,11 @@ app = Flask(__name__)
 def front():
 	return render_template("bser_template.html")
 
-@app.route('/bser/<start>/<end>')
+@app.route('/bser/<id>/<start>/<end>')
 def bser(start,end):
     try:
-        url = "http://rajresults.nic.in/resbserx19.asp"
+	urllist = ['"http://rajresults.nic.in/resbserx19.asp","http://rajresults.nic.in/rajartsbser2019.htm","http://rajresults.nic.in/sciencebser19.htm","http://rajresults.nic.in/commercebser19.htm"]
+        url = urllist[int(id)]
         data = dict()
         d=  {}
         # print("1")
