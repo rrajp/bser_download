@@ -48,8 +48,13 @@
     <label for="msg" class="col-sm-10 control-label " id="warn" style="font-size: 30px">Total Students: 0</label>
 </div>
 <div class="container text-center" style="padding:3px; font-size: 20px ">
-    Your Download will begin in <span id="time">5</span> seconds
+    <label for="msg" class="col-sm-10 control-label " id="timetext" style="font-size: 20px"></label>
+<!--    Processing Request..... Download will begin within id="timetext">-->
 </div>
+<div class="container text-center" style="padding:3px; font-size: 20px ">
+    <span id="time">-</span> seconds
+</div>
+
 
 
 <script>
@@ -58,8 +63,8 @@
         var end = document.getElementById("end").value;
 
         var site = "http://bser-download.herokuapp.com";
-
         var endpoint = site + "/bser/" + document.getElementById("result").value + "/" + start + "/" + end;
+        // var endpoint = ""
 
         var diff = end - start;
         var total = "Total Students : " + diff;
@@ -87,9 +92,11 @@
      var start = document.getElementById("start").value;
      var end = document.getElementById("end").value;
   var counter = end-start;
+
   setInterval(function() {
     counter--;
     if (counter >= 0) {
+        document.getElementById("timetext").textContent = 'Processing Request..... Download will begin within';
       span = document.getElementById("time");
       span.innerHTML = counter;
     }
