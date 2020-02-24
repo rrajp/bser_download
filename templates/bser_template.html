@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>BSER Result Downloader</title>
+    <title>BSER Result Downloader </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -26,6 +26,10 @@
             <option value="2">Senior Secondary (Arts) - 2019 Result</option>
             <option value="3">Senior Secondary (Science) - 2019 Result</option>
             <option value="4">Senior Secondary (Commerce) - 2019 Result</option>
+            <option value="5">Secondary - 2020 Result</option>
+            <option value="6">Senior Secondary (Arts) - 2020 Result</option>
+            <option value="7">Senior Secondary (Science) - 2020 Result</option>
+            <option value="8">Senior Secondary (Commerce) - 2020 Result</option>
         </select>
     </div>
     <form class="form-inline" style="padding:50px">
@@ -41,11 +45,21 @@
                    name="pswd">
         </div>
     </form>
-    <button type="submit" class="btn btn-primary mb-2 col-sm-4" onclick="myFunction()">Download</button>
+    <button type="submit" class="btn btn-primary mb-2 col-sm-4" onclick="myFunction()" id="download">Download</button>
     <p id="displayResult"></p>
 </div>
-<div class="container text-center" style="padding:50px">
+<div class="container text-center" style="padding:10px">
     <label for="msg" class="col-sm-10 control-label " id="warn" style="font-size: 30px">Total Students: 0</label>
+</div>
+<div class="container text-center" style="padding:3px; font-size: 20px ">
+    <label for="msg" class="col-sm-10 control-label " id="timetext" style="font-size: 20px"></label>
+    <!--    Processing Request..... Download will begin within id="timetext">-->
+</div>
+<div class="container text-center" style="padding:3px; font-size: 20px ">
+    <span id="time">-</span>
+</div>
+<div class="container text-center" style="padding:30px; font-size: 10px; color: deeppink">
+    Made with &hearts; by Raviraj
 </div>
 
 
@@ -57,6 +71,7 @@
         var site = "http://bser-download.herokuapp.com";
         var endpoint = site + "/bser/" + document.getElementById("result").value + "/" + start + "/" + end;
 
+
         var diff = end - start;
         var total = "Total Students : " + diff;
         if (document.getElementById("result").value == "0") {
@@ -65,23 +80,50 @@
         } else if (end - start > 30) {
             document.getElementById("warn").textContent = "Total Students Should be less than 30";
             return;
+        } else if (end - start == 0) {
+            document.getElementById("warn").textContent = "Provide Student Roll Number Range More than 1";
+            return;
         } else if (end - start < 30) {
             document.getElementById("warn").textContent = total
+
+            //var endpoint = 'https://www.who.int/healthinfo/statistics/whostat2005_mortality.xls?ua=1'
+
+            // if (document.getElementById("result").value>4){
+            // document.getElementById("warn").textContent = 'The result has not been announced Yet!';
+            //     endpoint = ""}
+
+            var element = document.createElement('a');
+            element.setAttribute('href', endpoint);
+            element.setAttribute('download', 'Result.xlsx');
+
+            element.style.display = 'none';
+            document.body.appendChild(element);
+
+            element.click();
         }
-        //var endpoint = 'https://www.who.int/healthinfo/statistics/whostat2005_mortality.xls?ua=1'
-
-        var element = document.createElement('a');
-        element.setAttribute('href', endpoint);
-        element.setAttribute('download', 'Result.xlsx');
-
-        element.style.display = 'none';
-        document.body.appendChild(element);
-
-        element.click();
-
-        document.body.removeChild(element);
     }
+
+    function startTimer() {
+        var start = document.getElementById("start").value;
+        var end = document.getElementById("end").value;
+        var counter = end - start;
+
+        setInterval(function () {
+            counter--;
+            if (counter >= 0 && counter<=30) {
+                document.getElementById("timetext").textContent = 'Processing Request..... Download will begin within';
+                span = document.getElementById("time");
+                span.innerHTML = counter+ " Seconds";
+            }
+        }, 1000);
+    }
+
+    $("#download").click(function () {
+        startTimer();
+    });
+
 </script>
+
 </body>
 
 </html>
