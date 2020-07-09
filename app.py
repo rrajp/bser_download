@@ -23,8 +23,12 @@ def bser(uid, start, end):
         d = {}
         # print("1")
         for number in range(int(start), int(end)):
-
-            payload = "roll_no=" + str(number) + "&B1=Submit"
+            
+            if int(uid)==7:
+                payload = f"__VIEWSTATE=%2FwEPDwUJNTYyNjA1MzQ5ZGQBbFD3Bib8uKtFlUVNWkFLFiLZog8Z7GZFOxYiL9pAqg%3D%3D&__VIEWSTATEGENERATOR=8CEC9530&__EVENTVALIDATION=%2FwEdAATy50P743NFHbR3f01aGgVZWB%2Ft8XsfPbhKtaDxBSD9Ly%2B%2FyJEA4EQNtbaAJJ0rSlW%2FDdi58i%2FdsQ6aLnYJIUBmmxYXPqGJ1qSdfy3cGnODfjAXDvqJzw2znNJXTaGrWCk%3D&txtRollNo={number}&btnResult=Submit"
+            else:
+                payload = "roll_no=" + str(number) + "&B1=Submit"
+                
             headers = {
                 'Host': 'rajresults.nic.in',
                 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:72.0) Gecko/20100101 Firefox/72.0',
