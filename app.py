@@ -17,7 +17,7 @@ def bser(uid, start, end):
         urllist = ["", "http://rajresults.nic.in/resbserx19.asp", "http://rajresults.nic.in/rajartsbser2019.asp",
                    "http://rajresults.nic.in/sciencebser19.asp", "http://rajresults.nic.in/commercebser19.asp",
                    "http://rajresults.nic.in/resbserx20.asp", "http://rajresults.nic.in/rajartsbser2020.asp",
-                   "http://rajresults.nic.in/sciencebser20.asp", "http://rajresults.nic.in/commercebser20.asp"]
+                   "http://rajresults.nic.in/Science2020bser.aspx", "http://rajresults.nic.in/commercebser20.asp"]
         url = urllist[int(uid)]
         data = dict()
         d = {}
